@@ -258,9 +258,9 @@ public:
 					sum = sum + sn->examsRecordsData[i][j].mark;
 					count++;
 				}
-		int avr = 0;
+		double avr = 0;
 		if (count > 0)
-			avr = sum / count;
+			avr = 1.00*sum / count;
 		return avr;
 	}
 	int getGroupNum(StudentNode* sn) {
