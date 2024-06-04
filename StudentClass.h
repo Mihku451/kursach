@@ -126,14 +126,15 @@ public:
 				break;
 			case 1:
 				ce->setLabel("Введите фамилию. ");
+				//вариант!!!
 				strcpy_s(sn->surName, sizeof(sn->surName), ce->setDataString(sn->surName).c_str());
-				tmpchar = sn->surName[0];
-				if ((tmpchar >= 'А' && tmpchar <= 'П') || (tmpchar >= 'а' && tmpchar <= 'п')) {
-					sn->group_num = 1;
-				}
-				else {
-					sn->group_num = 2;
-				}
+				//tmpchar = sn->surName[0];
+				//if ((tmpchar >= 'А' && tmpchar <= 'П') || (tmpchar >= 'а' && tmpchar <= 'п')) {
+				//	sn->group_num = 1;
+				//}
+				//else {
+				//	sn->group_num = 2;
+				//}
 				break;
 			case 2:
 				ce->setLabel("Введите имя. ");
@@ -264,16 +265,24 @@ public:
 		return avr;
 	}
 	int getGroupNum(StudentNode* sn) {
-		char firstLetter = sn->surName[0];
+		//char firstLetter = sn->surName[0];
+		//int num;
+		//if ((firstLetter >= 'А' && firstLetter <= 'П') || (firstLetter >= 'а' && firstLetter <= 'п'))
+		//{
+		//	num = 1; // Фамилия входит в диапазон А-П
+		//}
+		//else
+		//{
+		//	num = 2; // Фамилия входит в диапазон Р-Я
+		//}
+		//return num;
+		//вариант!!!
 		int num;
-		if ((firstLetter >= 'А' && firstLetter <= 'П') || (firstLetter >= 'а' && firstLetter <= 'п'))
-		{
-			num = 1; // Фамилия входит в диапазон А-П
-		}
+		bool sex = sn->sex;
+		if (sex == TRUE)
+			num = 1;
 		else
-		{
-			num = 2; // Фамилия входит в диапазон Р-Я
-		}
+			num = 2;
 		return num;
 	}
 	double getMarks45(StudentNode* sn) {
@@ -498,18 +507,22 @@ public:
 			case 1: //Добавить студента
 				addItem();
 				break;
-			case 2: //Загрузить студентов из файла БД
+			case 2:
+				//вариант!!!
+				//Загрузить студентов из файла БД
 				//sort
-				ce->setLabel("Введите пароль ");
-				strcpy_s(cc->password, sizeof(cc->password), ce->setDataString(cc->password).c_str());
+				//ce->setLabel("Введите пароль ");
+				//strcpy_s(cc->password, sizeof(cc->password), ce->setDataString(cc->password).c_str());
 				cc->Decrypt();
 				this->myHead = cfw->loadData();  //todo delete memory leak
 				countItem = cfw->countItem;
 				break;
-			case 3: //Сохранить БД студентов в файл
+			case 3:
+				//вариант!!!
+				//Сохранить БД студентов в файл
 				//sort
-				ce->setLabel("Введите пароль ");
-				strcpy_s(cc->password, sizeof(cc->password), ce->setDataString(cc->password).c_str());
+				//ce->setLabel("Введите пароль ");
+				//strcpy_s(cc->password, sizeof(cc->password), ce->setDataString(cc->password).c_str());
 				cc->Crypt();
 				cfw->saveData(myHead);
 				break;
@@ -517,13 +530,14 @@ public:
 				
 				//Выполнить вариант XX
 				//printAllSurName_Name_MName_bYaear_AvrMarks();
+				//вариант!!!
 				processingAvrMarks_groupnum();
 				//printAllSurName_Name_MName_bYaear_AvrMarks();
 				sort();
 				printAllSurName_Name_MName_bYaear_AvrMarks();
 				_getch();
-				finds();
-				_getch();
+				//finds();
+				//_getch();
 				resultSelectedItem = 0;
 				break;
 			case 5:
@@ -537,6 +551,7 @@ public:
 	}
 
 	//sort
+	//вариант!!!
 	void processingAvrMarks_groupnum() {
 		struct StudentNode* current = myHead;
 		while (current) {
@@ -612,6 +627,7 @@ public:
 		current->group_num = element->group_num;
 		current->avrMark = element->avrMark; //!!!!
 	}
+	//вариант!!!
 	void sort() {
 		//https://www.cs.usfca.edu/~galles/visualization/Algorithms.html
 		//https://www.geeksforgeeks.org/bubble-sort/
@@ -635,51 +651,63 @@ public:
 					//setElement(0, tmp2);
 				}
 				if (getElement(j)->group_num == getElement(j + 1)->group_num) {
-					if (getElement(j)->avrMark > getElement(j + 1)->avrMark) {
-						copyDataElement(tmp1, getElement(j));
-						copyDataElement(tmp2, getElement(j + 1));
-						setElement(j + 1, tmp1);
-						setElement(j, tmp2);
+						//copyDataElement(tmp1, getElement(j));
+						//copyDataElement(tmp2, getElement(j + 1));
+						//setElement(j + 1, tmp1);
+						//setElement(j, tmp2);
+						bool flag = FALSE;
+						for( int i1=0;i1 < sizeof((getElement(j)->surName));i1++)
+							for (int j1 = 0; j1 < sizeof((getElement(j + 1)->surName)); j1++) {
+								if (getElement(j)->surName[i1] > getElement(j)->surName[j1]) {
+									flag = TRUE;
+									break;
+								}
+							}
+						if (flag == TRUE) {
+							copyDataElement(tmp1, getElement(j));
+							copyDataElement(tmp2, getElement(j + 1));
+							setElement(j + 1, tmp1);
+							setElement(j, tmp2);
+						}
 					}
 				}
 			}
 		}
-	}
-		
-	void finds() {
-		ClassMenu* findMenu = new ClassMenu();
-		int resultSelectedItem = 1;
-		const int exitItem = 3;
-		findMenu->addTitleItem("Выполнить проверку?");
-		findMenu->addItem("да");
-		findMenu->addItem("нет");
-		string tmpstring;
-		struct StudentNode* current = myHead;
-		while (resultSelectedItem != exitItem) {
-			findMenu->run();
-			resultSelectedItem = findMenu->getSelectedItem();
-			switch (resultSelectedItem) {
-			case 0:
-				cout << "введите дату рождения";
-				cin >> tmpstring;
-				while (current) {
-					if (tmpstring == current->birthDateString) {
-						cout << string(current->surName) + " " + string(current->name) + " " + string(current->middleName);
-
-				}
-					current = current->next;
-				}
-				resultSelectedItem = exitItem;
-				break;
-			case 1:
-				
-				resultSelectedItem = exitItem;
-				break;
-			default:
-				break;
-			}
-		}
-	}
+	//вариант!!!
+	//void finds() {
+	//	ClassMenu* findMenu = new ClassMenu();
+	//	int resultSelectedItem = 1;
+	//	const int exitItem = 3;
+	//	findMenu->addTitleItem("Выполнить проверку?");
+	//	findMenu->addItem("да");
+	//	findMenu->addItem("нет");
+	//	string tmpstring;
+	//	struct StudentNode* current = myHead;
+	//	while (resultSelectedItem != exitItem) {
+	//		findMenu->run();
+	//		resultSelectedItem = findMenu->getSelectedItem();
+	//		switch (resultSelectedItem) {
+	//		case 0:
+	//			cout << "введите дату рождения";
+	//			cin >> tmpstring;
+	//			while (current) {
+	//				if (tmpstring == current->birthDateString) {
+	//					cout << string(current->surName) + " " + string(current->name) + " " + string(current->middleName);
+	//
+	//			}
+	//				current = current->next;
+	//			}
+	//			resultSelectedItem = exitItem;
+	//			break;
+	//		case 1:
+	//			
+	//			resultSelectedItem = exitItem;
+	//			break;
+	//		default:
+	//			break;
+	//		}
+	//	}
+	//}
 	void printAllSurName_Name_MName_bYaear_AvrMarks() {
 		struct StudentNode* current = myHead;
 		cout << endl;
@@ -687,6 +715,7 @@ public:
 			//cout << " " << current->data;
 			cout.setf(ios::fixed);
 			cout.precision(2);
+			//вариант!!!
 			cout << current->group_num<<" подгруппа " << string(current->surName) + " " + string(current->name) + " " + string(current->middleName) + " " + string(current->birthDateString) + " " << current->avrMark << endl;
 			current = current->next;
 		}
