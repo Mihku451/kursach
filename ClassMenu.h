@@ -39,7 +39,7 @@ private:
 
                 SetConsoleTextAttribute(hConsole, 15);
                 cout << "|";
-                SetConsoleTextAttribute(hConsole, 13);
+                SetConsoleTextAttribute(hConsole, 12);
                 cout << " * " << items[i]->c_str();
                 SetConsoleTextAttribute(hConsole, 15);
                 string tmpString = "";
