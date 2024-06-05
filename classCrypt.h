@@ -1,8 +1,8 @@
 ﻿#pragma once
-#include <iostream> // äëÿ ôóíêöèè cout();
-#include <stdlib.h> // äëÿ ôóíêöèè system();
-#include <cstdio> // äëÿ ôóíêöèè remove();
-#include <cstring> // äëÿ ôóíêöèè strcpy_s();
+#include <iostream> // для функции cout();
+#include <stdlib.h> // для функции system();
+#include <cstdio> // для функции remove();
+#include <cstring> // для функции strcpy_s();
 
 using namespace std;
 
@@ -12,13 +12,13 @@ public:
     string  path_openssl;
     string db_filename;
     string secure_db_filename;
-    char password[20];
+    char password[35];
 
     ClassCrypt() {
-        path_openssl = "C:\\Program Files\\OpenSSL-Win64\\bin\\openssl.exe";
-        db_filename = "dataBinary.txt";
-        secure_db_filename = "secure_dataBinary.txt";
-        strcpy_s(password, "password1");
+        path_openssl = "c:\\openssl\\bin\\openssl.exe";
+        db_filename = "dataBinary1.txt";
+        secure_db_filename = "dataBinary1q.txt";
+        strcpy_s(password, sizeof(password), "password!");
     }
 
     //https://www.shellhacks.com/encrypt-decrypt-file-password-openssl/
@@ -43,7 +43,7 @@ public:
         system(command.c_str());
         if (remove(db_filename.c_str()) != 0)
         {
-            cout << "[!] Îøèáêà óäàëåíèÿ ÍÅçàøèôðîâàííîé áàçû äàííûõ!" << endl;
+            cout << "[!] Ошибка удаления НЕзашифрованной базы данных!" << endl;
         }
     }
     void Decrypt()
@@ -53,7 +53,7 @@ public:
         cout << endl << command << endl;
         system(command.c_str());
         if (remove(secure_db_filename.c_str()) != 0) {
-            cout << "[!] Îøèáêà óäàëåíèÿ çàøèôðîâàííîé áàçû äàííûõ!" << endl;
+            cout << "[!] Ошибка удаления зашифрованной базы данных!" << endl;
         }
     }
 };

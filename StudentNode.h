@@ -12,9 +12,7 @@ struct StudentNode
 	// int recordCardNumber; // дл€ некоторых вариантов заданий допустимо 
 							 // и удобнее использовать целочисленное значение зачетной книжки
 	char birthDateString[20]; // дата рождени€ 
-	// int birthDay;
-	// int birthMonth;
-	// int birthYear;
+	
 	bool sex; // ‘лаг пола true - мальчик
 	// false - девочка
 // ѕредполагаетс€ бинарный пол

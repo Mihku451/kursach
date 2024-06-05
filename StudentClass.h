@@ -23,6 +23,7 @@ public:
 		sn->sex = true;
 		sn->startYear = 2021;
 		strcpy_s(sn->birthDateString, sizeof(sn->birthDateString), "27.12.1984");
+		
 		ExamsResultsClass* er = new ExamsResultsClass();
 		er->add(0, "Яыки программирования 1", 5);
 		er->add(0, "Математика 1", 5);
@@ -502,16 +503,20 @@ public:
 				//sort
 				ce->setLabel("Введите пароль ");
 				strcpy_s(cc->password, sizeof(cc->password), ce->setDataString(cc->password).c_str());
+				
 				cc->Decrypt();
+				_getch();
 				this->myHead = cfw->loadData();  //todo delete memory leak
 				countItem = cfw->countItem;
 				break;
 			case 3: //Сохранить БД студентов в файл
 				//sort
+				
+				cfw->saveData(myHead);
 				ce->setLabel("Введите пароль ");
 				strcpy_s(cc->password, sizeof(cc->password), ce->setDataString(cc->password).c_str());
 				cc->Crypt();
-				cfw->saveData(myHead);
+				_getch();
 				break;
 			case 4:
 				
