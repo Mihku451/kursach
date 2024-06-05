@@ -44,6 +44,7 @@ public:
         if (remove(db_filename.c_str()) != 0)
         {
             cout << "[!] Ошибка удаления НЕзашифрованной базы данных!" << endl;
+            
         }
     }
     void Decrypt()
@@ -54,6 +55,7 @@ public:
         system(command.c_str());
         if (remove(secure_db_filename.c_str()) != 0) {
             cout << "[!] Ошибка удаления зашифрованной базы данных!" << endl;
+           
         }
     }
 };

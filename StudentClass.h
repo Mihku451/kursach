@@ -434,14 +434,14 @@ public:
 		//sort
 		ClassCrypt* cc = new ClassCrypt();
 		ClassFileWraper* cfw = new ClassFileWraper();
-		ce->setLabel("Введите пароль от БД");
+		ce->setLabel("Введите пароль от БД. Прим.: закрывайте программу только через главное меню!");
 		strcpy_s(cc->password, sizeof(cc->password), ce->setDataString(cc->password).c_str());
 		cc->Decrypt();
 		_getch();
 		strcpy_s(cfw->filename, sizeof(cfw->filename), "dataBinary1.txt");
 		cfw->mode = true; // Binary     //!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		this->myHead = cfw->loadData();
-		
+		cc->Crypt();
 		countItem = cfw->countItem;
 		//sort
 		while (resultSelectedItem != exitInt) {
@@ -513,10 +513,11 @@ public:
 				_getch();
 				this->myHead = cfw->loadData();  //todo delete memory leak
 				countItem = cfw->countItem;
+				cc->Crypt();
 				break;
 			case 3: //Сохранить БД студентов в файл
 				//sort
-				
+				cc->Decrypt();
 				cfw->saveData(myHead);
 				ce->setLabel("Введите пароль ");
 				strcpy_s(cc->password, sizeof(cc->password), ce->setDataString(cc->password).c_str());
@@ -537,7 +538,8 @@ public:
 				resultSelectedItem = 0;
 				break;
 			case 5:
-				cc->Crypt();
+				if (cfw->fileExists())
+					cc->Crypt();
 				resultSelectedItem = exitInt;
 				break;
 			default:
