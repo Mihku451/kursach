@@ -13,24 +13,24 @@ public:
 	static void addDefaultStudent(StudentNode* sn) {
 		//sn->id = 0;
 
-		strcpy_s(sn->surName, sizeof(sn->surName), "Русаков");
-		strcpy_s(sn->name, sizeof(sn->name), "Алексей");
-		strcpy_s(sn->middleName, sizeof(sn->middleName), "Михайлович");
-		strcpy_s(sn->faculty, sizeof(sn->faculty), "10.05.04 Информационно-аналитические системы безопасности");
-		strcpy_s(sn->department, sizeof(sn->department), "Институт кибербезопасности и цифровых технологий");
-		strcpy_s(sn->group, sizeof(sn->group), "БИСО-03-23");
-		strcpy_s(sn->recordCardNumber, sizeof(sn->recordCardNumber), "20Б0857");
+		strcpy_s(sn->surName, sizeof(sn->surName), "ГђГіГ±Г ГЄГ®Гў");
+		strcpy_s(sn->name, sizeof(sn->name), "ГЂГ«ГҐГЄГ±ГҐГ©");
+		strcpy_s(sn->middleName, sizeof(sn->middleName), "ГЊГЁГµГ Г©Г«Г®ГўГЁГ·");
+		strcpy_s(sn->faculty, sizeof(sn->faculty), "10.05.04 Г€Г­ГґГ®Г°Г¬Г Г¶ГЁГ®Г­Г­Г®-Г Г­Г Г«ГЁГІГЁГ·ГҐГ±ГЄГЁГҐ Г±ГЁГ±ГІГҐГ¬Г» ГЎГҐГ§Г®ГЇГ Г±Г­Г®Г±ГІГЁ");
+		strcpy_s(sn->department, sizeof(sn->department), "Г€Г­Г±ГІГЁГІГіГІ ГЄГЁГЎГҐГ°ГЎГҐГ§Г®ГЇГ Г±Г­Г®Г±ГІГЁ ГЁ Г¶ГЁГґГ°Г®ГўГ»Гµ ГІГҐГµГ­Г®Г«Г®ГЈГЁГ©");
+		strcpy_s(sn->group, sizeof(sn->group), "ГЃГ€Г‘ГЋ-03-23");
+		strcpy_s(sn->recordCardNumber, sizeof(sn->recordCardNumber), "20ГЃ0857");
 		sn->sex = true;
 		sn->startYear = 2021;
 		strcpy_s(sn->birthDateString, sizeof(sn->birthDateString), "27.12.1984");
 		
 		ExamsResultsClass* er = new ExamsResultsClass();
-		er->add(0, "Яыки программирования 1", 5);
-		er->add(0, "Математика 1", 5);
-		er->add(0, "Физкультура 1", true);
-		er->add(1, "Яыки программирования 2", 5);
-		er->add(1, "Математика 2", 5);
-		er->add(1, "Физкультура 2", true);
+		er->add(0, "ГџГ»ГЄГЁ ГЇГ°Г®ГЈГ°Г Г¬Г¬ГЁГ°Г®ГўГ Г­ГЁГї 1", 5);
+		er->add(0, "ГЊГ ГІГҐГ¬Г ГІГЁГЄГ  1", 5);
+		er->add(0, "Г”ГЁГ§ГЄГіГ«ГјГІГіГ°Г  1", true);
+		er->add(1, "ГџГ»ГЄГЁ ГЇГ°Г®ГЈГ°Г Г¬Г¬ГЁГ°Г®ГўГ Г­ГЁГї 2", 5);
+		er->add(1, "ГЊГ ГІГҐГ¬Г ГІГЁГЄГ  2", 5);
+		er->add(1, "Г”ГЁГ§ГЄГіГ«ГјГІГіГ°Г  2", true);
 		for (int i = 0; i < sesCount; i++)
 			for (int j = 0; j < namesCount; j++) {
 				sn->examsRecordsData[i][j].isEmpty = er->data[i][j].isEmpty;
@@ -46,13 +46,13 @@ public:
 				}
 			}
 		char firstLetter = sn->surName[0];
-		if ((firstLetter >= 'А' && firstLetter <= 'П') || (firstLetter >= 'а' && firstLetter <= 'п'))
+		if ((firstLetter >= 'ГЂ' && firstLetter <= 'ГЏ') || (firstLetter >= 'Г ' && firstLetter <= 'ГЇ'))
 		{
-			sn->group_num = 1; // Фамилия входит в диапазон А-П
+			sn->group_num = 1; // Г”Г Г¬ГЁГ«ГЁГї ГўГµГ®Г¤ГЁГІ Гў Г¤ГЁГ ГЇГ Г§Г®Г­ ГЂ-ГЏ
 		}
 		else
 		{
-			sn->group_num = 2; // Фамилия входит в диапазон Р-Я
+			sn->group_num = 2; // Г”Г Г¬ГЁГ«ГЁГї ГўГµГ®Г¤ГЁГІ Гў Г¤ГЁГ ГЇГ Г§Г®Г­ Гђ-Гџ
 		}
 		sn->next = NULL;
 		delete er;
@@ -62,9 +62,9 @@ public:
 		ClassMenu* sexMenu = new ClassMenu();
 		int resultSelectedItem = 1;
 		const int exitItem = 3;
-		sexMenu->addTitleItem("Выберите пол: ");
-		sexMenu->addItem("мужской");
-		sexMenu->addItem("женский");
+		sexMenu->addTitleItem("Г‚Г»ГЎГҐГ°ГЁГІГҐ ГЇГ®Г«: ");
+		sexMenu->addItem("Г¬ГіГ¦Г±ГЄГ®Г©");
+		sexMenu->addItem("Г¦ГҐГ­Г±ГЄГЁГ©");
 		while (resultSelectedItem != exitItem) {
 			sexMenu->run();
 			resultSelectedItem = sexMenu->getSelectedItem();
@@ -90,31 +90,31 @@ public:
 		const int exitStudDataMenu = 0;
 		ClassEdit* ce = new  ClassEdit();
 		ExamsResultsClass* erc = new ExamsResultsClass();
-		studDataMenu->addItem("Выход");   //0
-		studDataMenu->addItem("Добавить/изменить фамилию"); //1
-		studDataMenu->addItem("Добавить/изменить имя");   //2
-		studDataMenu->addItem("Добавить/изменить отчество");   //3
-		studDataMenu->addItem("Добавить/изменить институт");   //4
-		studDataMenu->addItem("Добавить/изменить кафедру");   //5
-		studDataMenu->addItem("Добавить/изменить группу");   //6
-		studDataMenu->addItem("Добавить/изменить номер зачетной книжки");   //7
-		studDataMenu->addItem("Добавить/изменить пол");   //
-		studDataMenu->addItem("Добавить/изменить год поступления в ВУЗ");   //8
-		studDataMenu->addItem("Добавить/изменить дату рождения");   //9
-		studDataMenu->addItem("Добавить/изменить оценки");   //10
+		studDataMenu->addItem("Г‚Г»ГµГ®Г¤");   //0
+		studDataMenu->addItem("Г„Г®ГЎГ ГўГЁГІГј/ГЁГ§Г¬ГҐГ­ГЁГІГј ГґГ Г¬ГЁГ«ГЁГѕ"); //1
+		studDataMenu->addItem("Г„Г®ГЎГ ГўГЁГІГј/ГЁГ§Г¬ГҐГ­ГЁГІГј ГЁГ¬Гї");   //2
+		studDataMenu->addItem("Г„Г®ГЎГ ГўГЁГІГј/ГЁГ§Г¬ГҐГ­ГЁГІГј Г®ГІГ·ГҐГ±ГІГўГ®");   //3
+		studDataMenu->addItem("Г„Г®ГЎГ ГўГЁГІГј/ГЁГ§Г¬ГҐГ­ГЁГІГј ГЁГ­Г±ГІГЁГІГіГІ");   //4
+		studDataMenu->addItem("Г„Г®ГЎГ ГўГЁГІГј/ГЁГ§Г¬ГҐГ­ГЁГІГј ГЄГ ГґГҐГ¤Г°Гі");   //5
+		studDataMenu->addItem("Г„Г®ГЎГ ГўГЁГІГј/ГЁГ§Г¬ГҐГ­ГЁГІГј ГЈГ°ГіГЇГЇГі");   //6
+		studDataMenu->addItem("Г„Г®ГЎГ ГўГЁГІГј/ГЁГ§Г¬ГҐГ­ГЁГІГј Г­Г®Г¬ГҐГ° Г§Г Г·ГҐГІГ­Г®Г© ГЄГ­ГЁГ¦ГЄГЁ");   //7
+		studDataMenu->addItem("Г„Г®ГЎГ ГўГЁГІГј/ГЁГ§Г¬ГҐГ­ГЁГІГј ГЇГ®Г«");   //
+		studDataMenu->addItem("Г„Г®ГЎГ ГўГЁГІГј/ГЁГ§Г¬ГҐГ­ГЁГІГј ГЈГ®Г¤ ГЇГ®Г±ГІГіГЇГ«ГҐГ­ГЁГї Гў Г‚Г“Г‡");   //8
+		studDataMenu->addItem("Г„Г®ГЎГ ГўГЁГІГј/ГЁГ§Г¬ГҐГ­ГЁГІГј Г¤Г ГІГі Г°Г®Г¦Г¤ГҐГ­ГЁГї");   //9
+		studDataMenu->addItem("Г„Г®ГЎГ ГўГЁГІГј/ГЁГ§Г¬ГҐГ­ГЁГІГј Г®Г¶ГҐГ­ГЄГЁ");   //10
 		int day, month, year;
 		while (resultStudDataMenu != exitStudDataMenu) {
 			studDataMenu->eraseTitle();
-			studDataMenu->addTitleItem("Изменение/добавление данных о студенте:");
-			studDataMenu->addTitleItem("Фамилия: " + string(sn->surName) + " Имя: " + string(sn->name) + " Отчество: " + string(sn->middleName));
+			studDataMenu->addTitleItem("Г€Г§Г¬ГҐГ­ГҐГ­ГЁГҐ/Г¤Г®ГЎГ ГўГ«ГҐГ­ГЁГҐ Г¤Г Г­Г­Г»Гµ Г® Г±ГІГіГ¤ГҐГ­ГІГҐ:");
+			studDataMenu->addTitleItem("Г”Г Г¬ГЁГ«ГЁГї: " + string(sn->surName) + " Г€Г¬Гї: " + string(sn->name) + " ГЋГІГ·ГҐГ±ГІГўГ®: " + string(sn->middleName));
 			string sexString = "";
 			if (sn->sex)
-				sexString = "мужской";
-			else { sexString = "женский"; }
-			studDataMenu->addTitleItem("пол: " + sexString + " дата рождения: " + string(sn->birthDateString) + " год поступления:" + std::to_string(sn->startYear));
-			studDataMenu->addTitleItem("Номер зачетной книжки: " + string(sn->recordCardNumber) + " Группа: " + string(sn->group));
-			studDataMenu->addTitleItem("Институт: " + string(sn->faculty));
-			studDataMenu->addTitleItem("Кафедра: " + string(sn->department));
+				sexString = "Г¬ГіГ¦Г±ГЄГ®Г©";
+			else { sexString = "Г¦ГҐГ­Г±ГЄГЁГ©"; }
+			studDataMenu->addTitleItem("ГЇГ®Г«: " + sexString + " Г¤Г ГІГ  Г°Г®Г¦Г¤ГҐГ­ГЁГї: " + string(sn->birthDateString) + " ГЈГ®Г¤ ГЇГ®Г±ГІГіГЇГ«ГҐГ­ГЁГї:" + std::to_string(sn->startYear));
+			studDataMenu->addTitleItem("ГЌГ®Г¬ГҐГ° Г§Г Г·ГҐГІГ­Г®Г© ГЄГ­ГЁГ¦ГЄГЁ: " + string(sn->recordCardNumber) + " ГѓГ°ГіГЇГЇГ : " + string(sn->group));
+			studDataMenu->addTitleItem("Г€Г­Г±ГІГЁГІГіГІ: " + string(sn->faculty));
+			studDataMenu->addTitleItem("ГЉГ ГґГҐГ¤Г°Г : " + string(sn->department));
 			studDataMenu->run();
 			resultStudDataMenu = studDataMenu->getSelectedItem();
 			string tmpString = "";
@@ -126,10 +126,10 @@ public:
 				resultStudDataMenu = exitStudDataMenu;
 				break;
 			case 1:
-				ce->setLabel("Введите фамилию. ");
+				ce->setLabel("Г‚ГўГҐГ¤ГЁГІГҐ ГґГ Г¬ГЁГ«ГЁГѕ. ");
 				strcpy_s(sn->surName, sizeof(sn->surName), ce->setDataString(sn->surName).c_str());
 				tmpchar = sn->surName[0];
-				if ((tmpchar >= 'А' && tmpchar <= 'П') || (tmpchar >= 'а' && tmpchar <= 'п')) {
+				if ((tmpchar >= 'ГЂ' && tmpchar <= 'ГЏ') || (tmpchar >= 'Г ' && tmpchar <= 'ГЇ')) {
 					sn->group_num = 1;
 				}
 				else {
@@ -137,35 +137,35 @@ public:
 				}
 				break;
 			case 2:
-				ce->setLabel("Введите имя. ");
+				ce->setLabel("Г‚ГўГҐГ¤ГЁГІГҐ ГЁГ¬Гї. ");
 				strcpy_s(sn->name, sizeof(sn->name), ce->setDataString(sn->name).c_str());
 				break;
 			case 3:
-				ce->setLabel("Введите отчество. ");
+				ce->setLabel("Г‚ГўГҐГ¤ГЁГІГҐ Г®ГІГ·ГҐГ±ГІГўГ®. ");
 				strcpy_s(sn->middleName, sizeof(sn->middleName), ce->setDataString(sn->middleName).c_str());
 				break;
 			case 4:
-				ce->setLabel("Введите название института. ");
+				ce->setLabel("Г‚ГўГҐГ¤ГЁГІГҐ Г­Г Г§ГўГ Г­ГЁГҐ ГЁГ­Г±ГІГЁГІГіГІГ . ");
 				strcpy_s(sn->faculty, sizeof(sn->faculty), ce->setDataString(sn->faculty).c_str());
 				break;
 			case 5:
-				ce->setLabel("Введите название кафедры. ");
+				ce->setLabel("Г‚ГўГҐГ¤ГЁГІГҐ Г­Г Г§ГўГ Г­ГЁГҐ ГЄГ ГґГҐГ¤Г°Г». ");
 				strcpy_s(sn->department, sizeof(sn->department), ce->setDataString(sn->department).c_str());
 				break;
 			case 6:
-				ce->setLabel("Введите группу. ");
+				ce->setLabel("Г‚ГўГҐГ¤ГЁГІГҐ ГЈГ°ГіГЇГЇГі. ");
 				strcpy_s(sn->group, sizeof(sn->group), ce->setDataString(sn->group).c_str());
 				break;
 			case 7:
-				ce->setLabel("Введите номер зачетной книжки. ");
+				ce->setLabel("Г‚ГўГҐГ¤ГЁГІГҐ Г­Г®Г¬ГҐГ° Г§Г Г·ГҐГІГ­Г®Г© ГЄГ­ГЁГ¦ГЄГЁ. ");
 				strcpy_s(sn->recordCardNumber, sizeof(sn->recordCardNumber), ce->setDataString(sn->recordCardNumber).c_str());
 				break;
 			case 8:
-				ce->setLabel("Введите пол. ");
+				ce->setLabel("Г‚ГўГҐГ¤ГЁГІГҐ ГЇГ®Г«. ");
 				sn->sex = editSex();        ////
 				break;
 			case 9:
-				ce->setLabel("Введите год поступления в ВУЗ. ");
+				ce->setLabel("Г‚ГўГҐГ¤ГЁГІГҐ ГЈГ®Г¤ ГЇГ®Г±ГІГіГЇГ«ГҐГ­ГЁГї Гў Г‚Г“Г‡. ");
 				startYear = ce->setDataInt(1996, 2023, 2023);
 				//tmpString = sb->split(sn->birthDateString.c_str(), '.', 3);
 				year = atoi(tmpString.c_str());
@@ -178,20 +178,20 @@ public:
 					}
 					else
 					{
-						cout << "Ошибка год поступления в институт должен быть на 15 лет больше чем год рождения";
+						cout << "ГЋГёГЁГЎГЄГ  ГЈГ®Г¤ ГЇГ®Г±ГІГіГЇГ«ГҐГ­ГЁГї Гў ГЁГ­Г±ГІГЁГІГіГІ Г¤Г®Г«Г¦ГҐГ­ ГЎГ»ГІГј Г­Г  15 Г«ГҐГІ ГЎГ®Г«ГјГёГҐ Г·ГҐГ¬ ГЈГ®Г¤ Г°Г®Г¦Г¤ГҐГ­ГЁГї";
 						_getch();
 					}
 				}
 				break;
 			case 10:
-				ce->setLabel("Введите день рождения. ");
+				ce->setLabel("Г‚ГўГҐГ¤ГЁГІГҐ Г¤ГҐГ­Гј Г°Г®Г¦Г¤ГҐГ­ГЁГї. ");
 				day = ce->setDataInt(1, 31, 31);
-				ce->setLabel("Введите месяц рождения. ");
+				ce->setLabel("Г‚ГўГҐГ¤ГЁГІГҐ Г¬ГҐГ±ГїГ¶ Г°Г®Г¦Г¤ГҐГ­ГЁГї. ");
 				month = ce->setDataInt(1, 12, 12);
-				ce->setLabel("Введите год рождения. ");
+				ce->setLabel("Г‚ГўГҐГ¤ГЁГІГҐ ГЈГ®Г¤ Г°Г®Г¦Г¤ГҐГ­ГЁГї. ");
 				year = ce->setDataInt(1900, 2014, 2004);
 				if (sn->startYear < 1990) {
-					cout << "Ошибка год поступления в институт должен быть не ранее 1990";
+					cout << "ГЋГёГЁГЎГЄГ  ГЈГ®Г¤ ГЇГ®Г±ГІГіГЇГ«ГҐГ­ГЁГї Гў ГЁГ­Г±ГІГЁГІГіГІ Г¤Г®Г«Г¦ГҐГ­ ГЎГ»ГІГј Г­ГҐ Г°Г Г­ГҐГҐ 1990";
 					_getch();
 				}
 				else
@@ -202,13 +202,13 @@ public:
 					}
 					else
 					{
-						cout << "Ошибка год поступления в институт должен быть на 13 лет больше чем год рождения";
+						cout << "ГЋГёГЁГЎГЄГ  ГЈГ®Г¤ ГЇГ®Г±ГІГіГЇГ«ГҐГ­ГЁГї Гў ГЁГ­Г±ГІГЁГІГіГІ Г¤Г®Г«Г¦ГҐГ­ ГЎГ»ГІГј Г­Г  13 Г«ГҐГІ ГЎГ®Г«ГјГёГҐ Г·ГҐГ¬ ГЈГ®Г¤ Г°Г®Г¦Г¤ГҐГ­ГЁГї";
 						_getch();
 					}
 				}
 				break;
 			case 11:
-				ce->setLabel("Просмотреть/ изменить оценки.");
+				ce->setLabel("ГЏГ°Г®Г±Г¬Г®ГІГ°ГҐГІГј/ ГЁГ§Г¬ГҐГ­ГЁГІГј Г®Г¶ГҐГ­ГЄГЁ.");
 				for (int i = 0; i < sesCount; i++)
 					for (int j = 0; j < namesCount; j++) {
 						erc->data[i][j].isEmpty = sn->examsRecordsData[i][j].isEmpty;
@@ -267,13 +267,13 @@ public:
 	int getGroupNum(StudentNode* sn) {
 		char firstLetter = sn->surName[0];
 		int num;
-		if ((firstLetter >= 'А' && firstLetter <= 'П') || (firstLetter >= 'а' && firstLetter <= 'п'))
+		if ((firstLetter >= 'ГЂ' && firstLetter <= 'ГЏ') || (firstLetter >= 'Г ' && firstLetter <= 'ГЇ'))
 		{
-			num = 1; // Фамилия входит в диапазон А-П
+			num = 1; // Г”Г Г¬ГЁГ«ГЁГї ГўГµГ®Г¤ГЁГІ Гў Г¤ГЁГ ГЇГ Г§Г®Г­ ГЂ-ГЏ
 		}
 		else
 		{
-			num = 2; // Фамилия входит в диапазон Р-Я
+			num = 2; // Г”Г Г¬ГЁГ«ГЁГї ГўГµГ®Г¤ГЁГІ Гў Г¤ГЁГ ГЇГ Г§Г®Г­ Гђ-Гџ
 		}
 		return num;
 	}
@@ -302,7 +302,7 @@ public:
 		myHead = NULL;
 	}
 
-	//Визуализация для добавления и удаления элементов в односвязном списке.
+	//Г‚ГЁГ§ГіГ Г«ГЁГ§Г Г¶ГЁГї Г¤Г«Гї Г¤Г®ГЎГ ГўГ«ГҐГ­ГЁГї ГЁ ГіГ¤Г Г«ГҐГ­ГЁГї ГЅГ«ГҐГ¬ГҐГ­ГІГ®Гў Гў Г®Г¤Г­Г®Г±ГўГїГ§Г­Г®Г¬ Г±ГЇГЁГ±ГЄГҐ.
 	//https://www.cs.usfca.edu/~galles/visualization/StackLL.html
 
 	void addItem()
@@ -352,7 +352,7 @@ public:
 			editStudent(current);
 		}
 		else {
-			cout << endl << "Ошибка индекс не в диапазоне";
+			cout << endl << "ГЋГёГЁГЎГЄГ  ГЁГ­Г¤ГҐГЄГ± Г­ГҐ Гў Г¤ГЁГ ГЇГ Г§Г®Г­ГҐ";
 		}
 	}
 
@@ -409,17 +409,17 @@ public:
 	//
 	void mainMenu() {
 		ClassMenu* mainMenu = new ClassMenu();
-		mainMenu->addTitleItem("Главное меню");
-		mainMenu->addItem("Просмотреть список студетов (удалить или изменить данные)"); //0
-		mainMenu->addItem("Добавить данные о студенте в БД"); //1
-		mainMenu->addItem("Загрузить студентов из файла БД"); //2
-		mainMenu->addItem("Сохранить БД студентов в файл"); //3
-		mainMenu->addItem("Выполнить вариант XX"); //4
-		mainMenu->addItem("Выход"); //5
+		mainMenu->addTitleItem("ГѓГ«Г ГўГ­Г®ГҐ Г¬ГҐГ­Гѕ");
+		mainMenu->addItem("ГЏГ°Г®Г±Г¬Г®ГІГ°ГҐГІГј Г±ГЇГЁГ±Г®ГЄ Г±ГІГіГ¤ГҐГІГ®Гў (ГіГ¤Г Г«ГЁГІГј ГЁГ«ГЁ ГЁГ§Г¬ГҐГ­ГЁГІГј Г¤Г Г­Г­Г»ГҐ)"); //0
+		mainMenu->addItem("Г„Г®ГЎГ ГўГЁГІГј Г¤Г Г­Г­Г»ГҐ Г® Г±ГІГіГ¤ГҐГ­ГІГҐ Гў ГЃГ„"); //1
+		mainMenu->addItem("Г‡Г ГЈГ°ГіГ§ГЁГІГј Г±ГІГіГ¤ГҐГ­ГІГ®Гў ГЁГ§ ГґГ Г©Г«Г  ГЃГ„"); //2
+		mainMenu->addItem("Г‘Г®ГµГ°Г Г­ГЁГІГј ГЃГ„ Г±ГІГіГ¤ГҐГ­ГІГ®Гў Гў ГґГ Г©Г«"); //3
+		mainMenu->addItem("Г‚Г»ГЇГ®Г«Г­ГЁГІГј ГўГ Г°ГЁГ Г­ГІ XX"); //4
+		mainMenu->addItem("Г‚Г»ГµГ®Г¤"); //5
 		int resultSelectedItem = 0;
 		int exitInt = 4;
 		ClassMenu* studentsMenu = new ClassMenu();
-		studentsMenu->addTitleItem("Список студентов");
+		studentsMenu->addTitleItem("Г‘ГЇГЁГ±Г®ГЄ Г±ГІГіГ¤ГҐГ­ГІГ®Гў");
 		int resultStudentSelectedItem = 1;
 		const int exitIntStudentMenu = 0;
 		StudentNode* sn;
@@ -434,7 +434,7 @@ public:
 		//sort
 		ClassCrypt* cc = new ClassCrypt();
 		ClassFileWraper* cfw = new ClassFileWraper();
-		strcpy_s(cfw->filename, sizeof(cfw->filename), "dataBinary.txt");
+		strcpy_s(cfw->filename, sizeof(cfw->filename), "dataBinary1.txt");
 		cfw->mode = true; // Binary     //!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		this->myHead = cfw->loadData();
 		countItem = cfw->countItem;
@@ -447,12 +447,12 @@ public:
 				resultStudentSelectedItem = 1;
 				while (resultStudentSelectedItem != exitIntStudentMenu) {
 					studentsMenu->eraseItem();
-					studentsMenu->addItem("Выход");
-					studentsMenu->addItem("Удалить данные о студенте");
+					studentsMenu->addItem("Г‚Г»ГµГ®Г¤");
+					studentsMenu->addItem("Г“Г¤Г Г«ГЁГІГј Г¤Г Г­Г­Г»ГҐ Г® Г±ГІГіГ¤ГҐГ­ГІГҐ");
 					struct StudentNode* current = myHead;
 					while (current) {
 						string tmpString = string(current->surName) + " " + string(current->name) + " " + string(current->middleName) + " " + string(current->birthDateString);
-						studentsMenu->addItem(tmpString); //добавить в меню студентов
+						studentsMenu->addItem(tmpString); //Г¤Г®ГЎГ ГўГЁГІГј Гў Г¬ГҐГ­Гѕ Г±ГІГіГ¤ГҐГ­ГІГ®Гў
 						current = current->next;
 					}
 					studentsMenu->run();
@@ -460,17 +460,17 @@ public:
 					//if (resultStudentSelectedItem == exitIntStudentMenu) {
 					//	break;
 					//}
-					if (resultStudentSelectedItem == 1) //удаление данных о студенте
+					if (resultStudentSelectedItem == 1) //ГіГ¤Г Г«ГҐГ­ГЁГҐ Г¤Г Г­Г­Г»Гµ Г® Г±ГІГіГ¤ГҐГ­ГІГҐ
 					{
 						delStudentsMenu->eraseAll();
-						delStudentsMenu->addTitleItem("Выберите студента для удаления данных");
-						delStudentsMenu->addItem("Выход");
+						delStudentsMenu->addTitleItem("Г‚Г»ГЎГҐГ°ГЁГІГҐ Г±ГІГіГ¤ГҐГ­ГІГ  Г¤Г«Гї ГіГ¤Г Г«ГҐГ­ГЁГї Г¤Г Г­Г­Г»Гµ");
+						delStudentsMenu->addItem("Г‚Г»ГµГ®Г¤");
 						int resultDel = 1;
 						const int exitDel = 0;
 						struct StudentNode* current = myHead;
 						while (current) {
 							string tmpString = string(current->surName) + " " + string(current->name) + " " + string(current->middleName) + " " + string(current->birthDateString);
-							delStudentsMenu->addItem(tmpString); //добавить в меню студентов
+							delStudentsMenu->addItem(tmpString); //Г¤Г®ГЎГ ГўГЁГІГј Гў Г¬ГҐГ­Гѕ Г±ГІГіГ¤ГҐГ­ГІГ®Гў
 							current = current->next;
 						}
 						while (resultDel != exitDel) {
@@ -491,17 +491,17 @@ public:
 					{
 						int num = resultStudentSelectedItem - 2;
 						editItem(num);
-						//можно сделать проверку есть ли такая ещё 
+						//Г¬Г®Г¦Г­Г® Г±Г¤ГҐГ«Г ГІГј ГЇГ°Г®ГўГҐГ°ГЄГі ГҐГ±ГІГј Г«ГЁ ГІГ ГЄГ Гї ГҐГ№Вё 
 					}
 				}
 				//resultSelectedItem = exitInt;
 				break;
-			case 1: //Добавить студента
+			case 1: //Г„Г®ГЎГ ГўГЁГІГј Г±ГІГіГ¤ГҐГ­ГІГ 
 				addItem();
 				break;
-			case 2: //Загрузить студентов из файла БД
+			case 2: //Г‡Г ГЈГ°ГіГ§ГЁГІГј Г±ГІГіГ¤ГҐГ­ГІГ®Гў ГЁГ§ ГґГ Г©Г«Г  ГЃГ„
 				//sort
-				ce->setLabel("Введите пароль ");
+				ce->setLabel("Г‚ГўГҐГ¤ГЁГІГҐ ГЇГ Г°Г®Г«Гј ");
 				strcpy_s(cc->password, sizeof(cc->password), ce->setDataString(cc->password).c_str());
 				
 				cc->Decrypt();
@@ -509,18 +509,18 @@ public:
 				this->myHead = cfw->loadData();  //todo delete memory leak
 				countItem = cfw->countItem;
 				break;
-			case 3: //Сохранить БД студентов в файл
+			case 3: //Г‘Г®ГµГ°Г Г­ГЁГІГј ГЃГ„ Г±ГІГіГ¤ГҐГ­ГІГ®Гў Гў ГґГ Г©Г«
 				//sort
 				
 				cfw->saveData(myHead);
-				ce->setLabel("Введите пароль ");
+				ce->setLabel("Г‚ГўГҐГ¤ГЁГІГҐ ГЇГ Г°Г®Г«Гј ");
 				strcpy_s(cc->password, sizeof(cc->password), ce->setDataString(cc->password).c_str());
 				cc->Crypt();
 				_getch();
 				break;
 			case 4:
 				
-				//Выполнить вариант XX
+				//Г‚Г»ГЇГ®Г«Г­ГЁГІГј ГўГ Г°ГЁГ Г­ГІ XX
 				//printAllSurName_Name_MName_bYaear_AvrMarks();
 				processingAvrMarks_groupnum();
 				//printAllSurName_Name_MName_bYaear_AvrMarks();
@@ -655,9 +655,9 @@ public:
 		ClassMenu* findMenu = new ClassMenu();
 		int resultSelectedItem = 1;
 		const int exitItem = 3;
-		findMenu->addTitleItem("Выполнить проверку?");
-		findMenu->addItem("да");
-		findMenu->addItem("нет");
+		findMenu->addTitleItem("Г‚Г»ГЇГ®Г«Г­ГЁГІГј ГЇГ°Г®ГўГҐГ°ГЄГі?");
+		findMenu->addItem("Г¤Г ");
+		findMenu->addItem("Г­ГҐГІ");
 		string tmpstring;
 		struct StudentNode* current = myHead;
 		while (resultSelectedItem != exitItem) {
@@ -665,7 +665,7 @@ public:
 			resultSelectedItem = findMenu->getSelectedItem();
 			switch (resultSelectedItem) {
 			case 0:
-				cout << "введите дату рождения";
+				cout << "ГўГўГҐГ¤ГЁГІГҐ Г¤Г ГІГі Г°Г®Г¦Г¤ГҐГ­ГЁГї";
 				cin >> tmpstring;
 				while (current) {
 					if (tmpstring == current->birthDateString) {
@@ -692,7 +692,7 @@ public:
 			//cout << " " << current->data;
 			cout.setf(ios::fixed);
 			cout.precision(2);
-			cout << current->group_num<<" подгруппа " << string(current->surName) + " " + string(current->name) + " " + string(current->middleName) + " " + string(current->birthDateString) + " " << current->avrMark << endl;
+			cout << current->group_num<<" ГЇГ®Г¤ГЈГ°ГіГЇГЇГ  " << string(current->surName) + " " + string(current->name) + " " + string(current->middleName) + " " + string(current->birthDateString) + " " << current->avrMark << endl;
 			current = current->next;
 		}
 		//_getch();
