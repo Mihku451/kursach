@@ -434,7 +434,7 @@ public:
 		//sort
 		ClassCrypt* cc = new ClassCrypt();
 		ClassFileWraper* cfw = new ClassFileWraper();
-		strcpy_s(cfw->filename, sizeof(cfw->filename), "dataBinary.txt");
+		strcpy_s(cfw->filename, sizeof(cfw->filename), "dataBinary1.txt");
 		cfw->mode = true; // Binary     //!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		this->myHead = cfw->loadData();
 		countItem = cfw->countItem;
